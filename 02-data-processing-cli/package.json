@@ -1,0 +1,12 @@
+{
+  "name": "02-data-processing-cli",
+  "version": "1.0.0",
+  "description": "Data Processing Toolkit — an interactive command-line application that performs various useful data processing operations",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexey Exact",
+  "license": "ISC",
+  "type": "module"
+}
