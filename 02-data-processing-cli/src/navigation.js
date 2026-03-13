@@ -29,6 +29,10 @@ export async function ls(state) {
 }
 
 export async function cd(state, dir) {
+  if (!dir) {
+    throw new Error("Missing directory argument");
+  }
+
   const newDir = path.resolve(state.currentDir, dir);
   const stat = await fs.stat(newDir);
 

@@ -5,10 +5,14 @@ export function parseOptions(args) {
       throw new Error(`Invalid option "${args[i]}"`);
     }
     const key = args[i]?.replace(/^--/, "");
-    const value = args[i + 1];
+    let value = args[i + 1];
 
-    if (!key || value === undefined) {
-      throw new Error(`Invalid option or missing value for "${args[i]}"`);
+    if (!key) {
+      break;
+    }
+
+    if (!value) {
+      value = true;
     }
 
     options[key] = value;
