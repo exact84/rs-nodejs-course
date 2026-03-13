@@ -1,4 +1,5 @@
 import * as nav from "./navigation.js";
+import { parseArgs } from "./utils/parse-args.js";
 
 const GOODBYE_MESSAGE = "Thank you for using Data Processing CLI!";
 const INVALID_INPUT_MESSAGE = "Invalid input";
@@ -27,7 +28,7 @@ export function repl(rl, state) {
   rl.prompt();
 
   rl.on("line", async (input) => {
-    const [cmd, ...args] = input.trim().split(" ");
+    const [cmd, ...args] = parseArgs(input);
     try {
       const handler = commands[cmd];
 

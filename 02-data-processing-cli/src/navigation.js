@@ -7,9 +7,9 @@ export function up(state) {
 }
 
 export async function ls(state) {
-  const files = await fs.readdir(state.currentDir, { withFileTypes: true });
+  const entries = await fs.readdir(state.currentDir, { withFileTypes: true });
 
-  files.sort((a, b) => {
+  entries.sort((a, b) => {
     const typeDiff = Number(b.isDirectory()) - Number(a.isDirectory());
     if (typeDiff !== 0) return typeDiff;
 
@@ -19,15 +19,22 @@ export async function ls(state) {
     });
   });
 
-  for (const file of files) {
-    console.log(file.name);
+  const maxLength = Math.max(...entries.map((e) => e.name.length));
+
+  for (const entry of entries) {
+    const typeLabel = entry.isDirectory() ? "[folder]" : "[file]";
+    const padding = " ".repeat(maxLength - entry.name.length);
+    console.log(`${entry.name}${padding}\t${typeLabel}`);
   }
 }
 
 export async function cd(state, dir) {
-  const stat = await fs.stat(path.resolve(state.currentDir, dir));
+  const newDir = path.resolve(state.currentDir, dir);
+  const stat = await fs.stat(newDir);
+
   if (!stat.isDirectory()) {
     throw new Error("");
   }
+
   state.currentDir = newDir;
 }
