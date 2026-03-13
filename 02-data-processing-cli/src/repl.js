@@ -7,6 +7,7 @@ const FAILURE_MESSAGE = "Operation failed";
 
 export function repl(rl, state) {
   const commands = {
+    ".exit": () => process.exit(),
     ls: nav.ls,
     cd: nav.cd,
     up: nav.up,

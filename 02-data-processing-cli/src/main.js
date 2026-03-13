@@ -16,6 +16,7 @@ function main() {
   const state = {
     currentDir: homeDir,
   };
+
   console.log("Welcome to Data Processing CLI!");
   console.log("You are currently in", homeDir);
 
