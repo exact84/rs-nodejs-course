@@ -1,9 +1,11 @@
 import * as nav from "./navigation.js";
 import { parseArgs } from "./utils/parse-args.js";
+import { csvToJson } from "./commands/csvToJson.js";
+import { jsonToCsv } from "./commands/jsonToCsv.js";
 
 const GOODBYE_MESSAGE = "Thank you for using Data Processing CLI!";
 const INVALID_INPUT_MESSAGE = "Invalid input";
-const FAILURE_MESSAGE = "Operation failed";
+export const FAILURE_MESSAGE = "Operation failed";
 
 export function repl(rl, state) {
   const commands = {
@@ -12,8 +14,8 @@ export function repl(rl, state) {
     cd: nav.cd,
     up: nav.up,
 
-    // "csv-to-json": csvToJson,
-    // "json-to-csv": jsonToCsv,
+    csv: csvToJson, // исправить имя
+    json: jsonToCsv,
   };
 
   process.on("SIGINT", () => {
@@ -39,7 +41,7 @@ export function repl(rl, state) {
         await handler(state, ...args);
       }
     } catch (err) {
-      console.log(`${FAILURE_MESSAGE}: ${err.message}`);
+      console.log(`${FAILURE_MESSAGE}: ${err}`);
     } finally {
       rl.setPrompt(`${state.currentDir}> `);
       rl.prompt();
