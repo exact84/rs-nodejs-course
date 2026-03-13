@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs from "node:fs/promises";
 import path from "node:path";
 
 export function up(state) {
@@ -6,18 +6,28 @@ export function up(state) {
   state.currentDir = parentDir;
 }
 
-export function ls(state) {
-  const files = fs.readdirSync(state.currentDir);
+export async function ls(state) {
+  const files = await fs.readdir(state.currentDir, { withFileTypes: true });
+
+  files.sort((a, b) => {
+    const typeDiff = Number(b.isDirectory()) - Number(a.isDirectory());
+    if (typeDiff !== 0) return typeDiff;
+
+    return a.name.localeCompare(b.name, "en", {
+      sensitivity: "base",
+      numeric: true,
+    });
+  });
+
   for (const file of files) {
-    console.log(file);
+    console.log(file.name);
   }
 }
 
-export function cd(state, dir) {
-  const newDir = path.resolve(state.currentDir, dir);
-  if (!fs.existsSync(newDir) || !fs.statSync(newDir).isDirectory()) {
-    console.log("Directory does not exist");
-    return;
+export async function cd(state, dir) {
+  const stat = await fs.stat(path.resolve(state.currentDir, dir));
+  if (!stat.isDirectory()) {
+    throw new Error("");
   }
   state.currentDir = newDir;
 }

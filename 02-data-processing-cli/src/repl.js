@@ -26,7 +26,7 @@ export function repl(rl, state) {
 
   rl.prompt();
 
-  rl.on("line", (input) => {
+  rl.on("line", async (input) => {
     const [cmd, ...args] = input.trim().split(" ");
     try {
       const handler = commands[cmd];
@@ -34,12 +34,13 @@ export function repl(rl, state) {
       if (!handler) {
         console.log(INVALID_INPUT_MESSAGE);
       } else {
-        handler(state, ...args);
+        await handler(state, ...args);
       }
     } catch (err) {
       console.log(`${FAILURE_MESSAGE}: ${err.message}`);
+    } finally {
+      rl.setPrompt(`${state.currentDir}> `);
+      rl.prompt();
     }
-    rl.setPrompt(`${state.currentDir}> `);
-    rl.prompt();
   });
 }
