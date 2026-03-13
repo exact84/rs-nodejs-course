@@ -3,6 +3,7 @@ import { parseArgs } from "./utils/parse-args.js";
 import { csvToJson } from "./commands/csvToJson.js";
 import { jsonToCsv } from "./commands/jsonToCsv.js";
 import { count } from "./commands/count.js";
+import { hash } from "./commands/hash.js";
 
 const GOODBYE_MESSAGE = "Thank you for using Data Processing CLI!";
 const INVALID_INPUT_MESSAGE = "Invalid input";
@@ -19,6 +20,7 @@ export function repl(rl, state) {
     csv: csvToJson,
     json: jsonToCsv,
     count: count,
+    hash: hash,
   };
 
   process.on("SIGINT", () => {
