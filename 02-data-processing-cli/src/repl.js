@@ -5,6 +5,8 @@ import { jsonToCsv } from "./commands/jsonToCsv.js";
 import { count } from "./commands/count.js";
 import { hash } from "./commands/hash.js";
 import { hashCompare } from "./commands/hashCompare.js";
+import { encrypt } from "./commands/encrypt.js";
+import { decrypt } from "./commands/decrypt.js";
 
 const GOODBYE_MESSAGE = "Thank you for using Data Processing CLI!";
 const INVALID_INPUT_MESSAGE = "Invalid input";
@@ -16,13 +18,13 @@ export function repl(rl, state) {
     ls: nav.ls,
     cd: nav.cd,
     up: nav.up,
-
-    // TODO: исправить имена
-    csv: csvToJson,
-    json: jsonToCsv,
+    "csv-to-json": csvToJson,
+    "json-to-csv": jsonToCsv,
     count: count,
     hash: hash,
     "hash-compare": hashCompare,
+    encrypt: encrypt,
+    decrypt: decrypt,
   };
 
   process.on("SIGINT", () => {
