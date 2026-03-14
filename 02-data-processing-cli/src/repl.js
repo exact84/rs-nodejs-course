@@ -7,6 +7,7 @@ import { hash } from "./commands/hash.js";
 import { hashCompare } from "./commands/hashCompare.js";
 import { encrypt } from "./commands/encrypt.js";
 import { decrypt } from "./commands/decrypt.js";
+import { logStats } from "./commands/logStats.js";
 
 const GOODBYE_MESSAGE = "Thank you for using Data Processing CLI!";
 const INVALID_INPUT_MESSAGE = "Invalid input";
@@ -25,6 +26,7 @@ export function repl(rl, state) {
     "hash-compare": hashCompare,
     encrypt: encrypt,
     decrypt: decrypt,
+    "log-stats": logStats,
   };
 
   process.on("SIGINT", () => {
@@ -50,7 +52,7 @@ export function repl(rl, state) {
         await handler(state, ...args);
       }
     } catch (err) {
-      console.log(`${FAILURE_MESSAGE}: ${err}`);
+      console.log(FAILURE_MESSAGE);
     } finally {
       rl.setPrompt(`${state.currentDir}> `);
       rl.prompt();
