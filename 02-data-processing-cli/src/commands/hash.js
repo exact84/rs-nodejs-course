@@ -23,7 +23,7 @@ import { createReadStream } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { parseOptions } from "../utils/parse-options.js";
 
-const hashAlgorithms = new Set(["sha256", "md5", "sha512"]);
+export const hashAlgorithms = new Set(["sha256", "md5", "sha512"]);
 
 export async function hash(state, ...args) {
   const options = parseOptions(args);
