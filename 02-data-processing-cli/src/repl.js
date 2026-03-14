@@ -15,7 +15,10 @@ export const FAILURE_MESSAGE = "Operation failed";
 
 export function repl(rl, state) {
   const commands = {
-    ".exit": () => process.exit(),
+    ".exit": () => {
+      console.log(GOODBYE_MESSAGE);
+      process.exit();
+    },
     ls: nav.ls,
     cd: nav.cd,
     up: nav.up,
