@@ -1,26 +1,3 @@
-// hash-compare — Compare file hash with expected hash
-// Calculate file hash and compare it with a value stored in a hash file.
-
-// hash-compare --input file.txt --hash file.txt.sha256
-// hash-compare --input file.txt --hash file.txt.md5 --algorithm md5
-// --input — path to the input file (required)
-// --hash — path to file with expected hash (required)
-// --algorithm — hash algorithm to use (optional, default: sha256). Supported values: sha256, md5, sha512
-
-// Output format:
-
-// OK
-// or
-// MISMATCH
-
-// Behavior:
-// Must calculate hash of --input using Streams API
-// Must read expected hash value from --hash file
-// Comparison should be case-insensitive and ignore trailing newline in hash file
-// Paths are relative to the current working directory or can be absolute
-// If input or hash file doesn't exist, print Operation failed
-// If algorithm is not supported, print Operation failed
-
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";

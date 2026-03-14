@@ -5,14 +5,12 @@ import { repl } from "./repl.js";
 const homeDir = os.homedir();
 
 function main() {
-  // sets up REPL
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
     prompt: "> ",
   });
 
-  // handles navigation state
   const state = {
     currentDir: homeDir,
   };

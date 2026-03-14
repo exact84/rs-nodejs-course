@@ -38,5 +38,4 @@ export async function encrypt(state, ...args) {
   writeStream.write(Buffer.concat([salt, iv]));
 
   await pipeline(readStream, cipher, appendAuthTag, writeStream);
-  // console.log("Encryption  successfully complete");
 }

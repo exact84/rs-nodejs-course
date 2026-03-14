@@ -62,5 +62,4 @@ export async function decrypt(state, ...args) {
   });
 
   await pipeline(readStream, decryptTransform, writeStream);
-  // console.log("Decryption successfully complete");
 }

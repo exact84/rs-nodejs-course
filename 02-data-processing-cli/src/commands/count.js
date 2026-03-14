@@ -1,20 +1,3 @@
-// count — Count lines, words, and characters in txt file
-// Count lines, words, and characters in a file (similar to the wc command).
-
-// count --input file.txt
-// --input — path to the input file (required)
-// Output format:
-
-// Lines: 42
-// Words: 350
-// Characters: 2048
-// Behavior:
-
-// Must use Streams API to process the file (do not load the entire file into memory)
-// A word is any sequence of non-whitespace characters
-// Paths are relative to the current working directory or can be absolute
-// If the input file doesn't exist, print Operation failed
-
 import { createReadStream } from "node:fs";
 import { parseOptions } from "../utils/parse-options.js";
 import path from "node:path";

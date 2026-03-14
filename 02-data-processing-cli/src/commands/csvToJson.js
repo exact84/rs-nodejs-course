@@ -73,12 +73,10 @@ export async function csvToJson(state, ...args) {
 
     await pipeline(readStream, transformStream, writeStream);
 
-    console.log("File written:", output);
-
-    readStream.on("error", (err) => console.log(FAILURE_MESSAGE, err));
-    transformStream.on("error", (err) => console.log(FAILURE_MESSAGE, err));
-    writeStream.on("error", (err) => console.log(FAILURE_MESSAGE, err));
+    readStream.on("error", () => console.log(FAILURE_MESSAGE));
+    transformStream.on("error", () => console.log(FAILURE_MESSAGE));
+    writeStream.on("error", () => console.log(FAILURE_MESSAGE));
   } catch (err) {
-    console.log(FAILURE_MESSAGE, err);
+    console.log(FAILURE_MESSAGE);
   }
 }
