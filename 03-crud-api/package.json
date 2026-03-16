@@ -1,0 +1,13 @@
+{
+  "name": "03-crud-api",
+  "version": "1.0.0",
+  "description": "Simple CRUD API for a Product Catalog using an in-memory database underneath.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexey Exact",
+  "license": "ISC",
+  "type": "module"
+}
