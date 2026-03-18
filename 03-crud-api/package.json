@@ -4,10 +4,20 @@
   "description": "Simple CRUD API for a Product Catalog using an in-memory database underneath.",
   "main": "main.js",
   "scripts": {
-    "start": "node src/main.js",
+    "dev": "ts-node src/main.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alexey Exact",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "fastify": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
 }
