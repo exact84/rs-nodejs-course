@@ -8,3 +8,6 @@ Thumbs.db
 
 .vscode/
 instructions.md
+temp/
+dist/
+**/.env

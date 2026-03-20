@@ -5,14 +5,14 @@ import {
   ProductIdParamsSchema,
   ProductResponseSchema,
   UpdateProductSchema,
-} from "../schemas/product.schema.ts";
+} from "../schemas/product.schema";
 import {
   createProduct,
   deleteProductById,
   getProductById,
   getProducts,
   updateProductById,
-} from "../services/product.service.ts";
+} from "../services/product.service";
 import { z } from "zod";
 
 export const productsRoute: FastifyPluginAsyncZod = async (fastify) => {

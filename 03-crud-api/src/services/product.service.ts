@@ -4,7 +4,7 @@ import {
   ProductResponseSchema,
   type UpdateProductInput,
   type ProductResponse,
-} from "../schemas/product.schema.ts";
+} from "../schemas/product.schema";
 
 const products: ProductResponse[] = [];
 
