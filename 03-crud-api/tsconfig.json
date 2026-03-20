@@ -4,20 +4,15 @@
     "rootDir": "./src",
     "outDir": "./dist",
 
-    "module": "nodenext",
+    "module": "NodeNext",
     "target": "ES2022",
     "types": ["node"],
-
-    "sourceMap": true,
-
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+    "moduleResolution": "NodeNext",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
 
     "strict": true,
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
     "skipLibCheck": true
   }
 }

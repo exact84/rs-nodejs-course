@@ -4,7 +4,7 @@
   "description": "Simple CRUD API for a Product Catalog using an in-memory database underneath.",
   "main": "main.js",
   "scripts": {
-    "dev": "ts-node src/main.ts",
+    "dev": "ts-node --esm src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,9 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "fastify": "^5.8.2"
+    "fastify": "^5.8.2",
+    "fastify-type-provider-zod": "^6.1.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
