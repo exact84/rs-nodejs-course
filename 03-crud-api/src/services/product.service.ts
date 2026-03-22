@@ -17,6 +17,10 @@ const isMulti = process.env.MULTI === "true";
 
 const products: ProductResponse[] = [];
 
+export function resetProducts(): void {
+  products.length = 0;
+}
+
 export async function createProduct(
   data: CreateProductInput,
 ): Promise<ProductResponse> {

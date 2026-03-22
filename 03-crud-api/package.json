@@ -8,7 +8,7 @@
     "start:prod": "npm run build && node dist/server.js",
     "start:multi": "npm run build && node dist/multi.js",
     "build": "tsup src/server.ts src/multi.ts --format esm --target node20 --out-dir dist --clean",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsx --test test/**/*.test.ts"
   },
   "author": "Alexey Exact",
   "license": "ISC",

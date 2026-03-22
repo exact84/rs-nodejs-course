@@ -124,3 +124,37 @@ DELETE /api/products/:productId
 
 * Data is stored in memory (not persistent)
 * In multi-instance mode, all workers share state via primary process
+
+## Testing
+
+This project includes API integration tests.
+
+### Run tests
+
+```bash
+npm run test
+```
+
+### Test scenarios
+
+The following scenarios are covered:
+
+1. **Full product lifecycle (CRUD)**
+
+   * get all products (empty array expected)
+   * create a product
+   * get product by id
+   * update product
+   * delete product
+   * verify that deleted product is not found
+
+2. **Operations with non-existing product**
+
+   * get by id returns 404
+   * update by id returns 404
+   * delete by id returns 404
+
+3. **Validation errors**
+
+   * create product with invalid payload returns 400
+   * update product with invalid payload returns 400
