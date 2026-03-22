@@ -1,0 +1,29 @@
+{
+  "name": "03-crud-api",
+  "version": "1.0.0",
+  "description": "Simple CRUD API for a Product Catalog using an in-memory database underneath.",
+  "main": "main.js",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start:prod": "npm run build && node dist/server.js",
+    "start:multi": "npm run build && node dist/multi.js",
+    "build": "tsup src/server.ts src/multi.ts --format esm --target node20 --out-dir dist --clean",
+    "test": "tsx --test test/**/*.test.ts"
+  },
+  "author": "Alexey Exact",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "fastify": "^5.8.2",
+    "fastify-type-provider-zod": "^6.1.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
