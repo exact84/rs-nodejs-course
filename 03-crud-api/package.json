@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
     "start:prod": "npm run build && node dist/server.js",
-    "build": "tsup src/server.ts --format esm --target node20 --out-dir dist --clean",
+    "start:multi": "npm run build && node dist/multi.js",
+    "build": "tsup src/server.ts src/multi.ts --format esm --target node20 --out-dir dist --clean",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alexey Exact",

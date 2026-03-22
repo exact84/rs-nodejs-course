@@ -26,7 +26,7 @@ export const productsRoute: FastifyPluginAsyncZod = async (fastify) => {
       },
     },
     async (request) => {
-      return getProducts();
+      return await getProducts();
     },
   );
 
@@ -43,7 +43,7 @@ export const productsRoute: FastifyPluginAsyncZod = async (fastify) => {
       },
     },
     async (request, reply) => {
-      const product = getProductById(request.params.productId);
+      const product = await getProductById(request.params.productId);
       if (!product) {
         return reply.status(404).send({ message: "Product not found" });
       }
@@ -62,7 +62,7 @@ export const productsRoute: FastifyPluginAsyncZod = async (fastify) => {
       },
     },
     async (request, reply) => {
-      const newProduct = createProduct(request.body);
+      const newProduct = await createProduct(request.body);
       return reply.status(201).send(newProduct);
     },
   );
@@ -81,7 +81,10 @@ export const productsRoute: FastifyPluginAsyncZod = async (fastify) => {
       },
     },
     async (request, reply) => {
-      const updated = updateProductById(request.params.productId, request.body);
+      const updated = await updateProductById(
+        request.params.productId,
+        request.body,
+      );
       if (!updated) {
         return reply.status(404).send({ message: "Product not found" });
       }
@@ -101,7 +104,7 @@ export const productsRoute: FastifyPluginAsyncZod = async (fastify) => {
       },
     },
     async (request, reply) => {
-      const updated = deleteProductById(request.params.productId);
+      const updated = await deleteProductById(request.params.productId);
       if (!updated) {
         return reply.status(404).send({ message: "Product not found" });
       }

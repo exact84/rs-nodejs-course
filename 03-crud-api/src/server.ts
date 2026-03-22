@@ -1,17 +1,23 @@
 import "dotenv/config";
 import { buildApp } from "./app";
-import productsRoute from "./routes/products.route";
 
 const port = Number(process.env.PORT) || 3000;
 const host = process.env.HOST || "localhost";
 
-const app = buildApp();
+const app = await buildApp();
 
-await app.register(productsRoute);
+app.addHook("onRequest", (request, _reply, done) => {
+  if (process.env.WORKER_PORT) {
+    console.log(
+      `Worker ${process.env.WORKER_PORT} got ${request.method} ${request.url}`,
+    );
+  }
+  done();
+});
 
 console.log("Server is listening...");
 
-await app.listen({ port, host });
+await app.listen({ host, port });
 
 process.on("SIGINT", async () => {
   await app.close();

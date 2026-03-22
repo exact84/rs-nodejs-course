@@ -4,12 +4,22 @@ import {
   serializerCompiler,
   type ZodTypeProvider,
 } from "fastify-type-provider-zod";
+import productsRoute from "./routes/products.route";
 
-export function buildApp() {
+export async function buildApp() {
   const fastify = Fastify({ logger: true }).withTypeProvider<ZodTypeProvider>();
 
   fastify.setValidatorCompiler(validatorCompiler);
   fastify.setSerializerCompiler(serializerCompiler);
+
+  fastify.addHook("onRequest", (request, _reply, done) => {
+    if (process.env.WORKER_PORT) {
+      console.log(
+        `Worker ${process.env.WORKER_PORT} got ${request.method} ${request.url}`,
+      );
+    }
+    done();
+  });
 
   fastify.setNotFoundHandler((request, reply) => {
     return reply
@@ -39,6 +49,8 @@ export function buildApp() {
 
     return reply.status(statusCode).send({ message });
   });
+
+  await fastify.register(productsRoute);
 
   return fastify;
 }
